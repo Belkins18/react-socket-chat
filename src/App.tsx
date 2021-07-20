@@ -1,8 +1,11 @@
 import React from "react";
+import cn from 'classnames';
+
+import s from './App.module.scss';
 
 const App = () => {
     return (
-        <div>
+        <div className={cn(s.header)}>
             Thois is App Component!
         </div>
     )
