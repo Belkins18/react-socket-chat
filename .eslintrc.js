@@ -15,6 +15,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
     'no-console': 'warn',
+    camelcase: 'warn',
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx', '.ts', '.js'] }],
     'import/extensions': [
       'error',
