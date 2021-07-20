@@ -1,0 +1,19 @@
+{
+  "name": "react-socket-chat",
+  "version": "1.0.0",
+  "description": "react socket chat",
+  "main": "index.js",
+  "repository": "git@github.com:Belkins18/react-socket-chat.git",
+  "author": "Belibov Nikolay",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.3.5",
+    "webpack": "4.44.2",
+    "webpack-cli": "3.3.12"
+  }
+}
