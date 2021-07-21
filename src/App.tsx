@@ -1,12 +1,10 @@
-import React from 'react';
-import Login from './pages/Login';
+import { useRoutes } from 'hookrouter';
+import routes from './routes';
 
 const App = () => {
-  return (
-    <>
-      <Login />
-    </>
-  );
+  const match = useRoutes(routes);
+
+  return match;
 };
 
 export default App;

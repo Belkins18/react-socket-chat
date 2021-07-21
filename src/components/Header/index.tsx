@@ -1,4 +1,5 @@
 import React from 'react';
+import { A } from 'hookrouter';
 // styles
 import s from './Header.module.scss';
 
@@ -13,6 +14,11 @@ const MENU: Array<IMenu> = [
     value: 'Login',
     link: '/',
   },
+  {
+    id: 2,
+    value: 'Chat',
+    link: '/chat',
+  },
 ];
 
 const Header = () => {
@@ -24,9 +30,9 @@ const Header = () => {
         </a>
         <nav className={s.menuWrap}>
           {MENU.map(({ link, value, id }) => (
-            <a key={id} href={link} className={s.menuLink}>
+            <A key={id} href={link} className={s.menuLink}>
               {value}
-            </a>
+            </A>
           ))}
         </nav>
       </div>
