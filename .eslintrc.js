@@ -13,7 +13,9 @@ module.exports = {
   },
   plugins: ['prettier', 'react', '@typescript-eslint'],
   rules: {
+    'react/prop-types': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
+    'react/no-unescaped-entities': ['error', { forbid: ['>', '}'] }],
     'no-console': 'warn',
     camelcase: 'warn',
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx', '.ts', '.js'] }],

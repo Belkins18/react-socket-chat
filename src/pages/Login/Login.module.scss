@@ -1,6 +1,8 @@
-@import 'src/assets/styles/variables';
+@import '@/assets/styles/_variables';
 
 .root {
-  min-height: 100vh;
-  background: linear-gradient(180deg, $third 0%, $primary 100%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
