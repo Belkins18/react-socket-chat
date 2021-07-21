@@ -1,0 +1,13 @@
+@import '@/assets/styles/_mixins';
+@import '@/assets/styles/_variables';
+
+.root {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid $dark;
+  outline: none;
+  padding-bottom: rem(15);
+  text-align: center;
+  max-width: rem(400);
+  width: 100%;
+}

@@ -1,0 +1,6 @@
+node_modules/
+.idea/
+dist/
+*/.DS_Store/
+src/**/*.d.ts
+!src/custom.d.ts

@@ -1,0 +1,303 @@
+@mixin list-reset($margin: true, $padding: true) {
+  @if $margin {
+    margin: 0;
+  }
+  @if $padding {
+    padding: 0;
+  }
+
+  text-indent: 0;
+
+  list-style: none;
+  list-style-position: outside;
+  list-style-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7); //Для ослика
+}
+
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin align-justify {
+  text-align: justify;
+  text-justify: newspaper;
+
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+@mixin hide-text {
+  text-indent: 100%;
+  white-space: nowrap;
+
+  overflow: hidden;
+}
+
+@mixin hidden {
+  position: absolute;
+  clip: rect(0 0 0 0); /* for Internet Explorer */
+  clip: rect(0, 0, 0, 0);
+
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+
+  overflow: hidden;
+}
+
+@mixin center($pos: absolute, $vert: true, $horiz: true) {
+  position: $pos;
+  @if ($horiz) {
+    left: 50%;
+  }
+  @if ($vert) {
+    top: 50%;
+  }
+
+  @if ($horiz == false) {
+    transform: translateY(-50%);
+  } @else if ($vert == false) {
+    transform: translateX(-50%);
+  } @else {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@mixin full-size($pos: absolute) {
+  position: $pos;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+@mixin size($val) {
+  width: $val;
+  height: $val;
+}
+
+// =============================================================================
+// String Replace (вспомогательный миксин для font-face)
+// =============================================================================
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+// $name - название для font-family
+// $path - путь к шрифту без формата
+// $weight - font-weight
+// $style - font-style
+// $exts - форматы шрифта, которые используются
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+
+  $extmods: (
+    eot: '?',
+    svg: '#' + str-replace($name, ' ', '_'),
+  );
+
+  $formats: (
+    otf: 'opentype',
+    ttf: 'truetype',
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + '.' + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+
+// =============================================================================
+// Медиа запросы
+// =============================================================================
+
+@mixin below($width, $orientation: 'width') {
+  @media screen and (max-#{$orientation}: $width) {
+    @content;
+  }
+}
+
+// больше указанной величины (по умолчанию ширина)
+@mixin above($width, $orientation: 'width') {
+  @media screen and (min-#{$orientation}: $width) {
+    @content;
+  }
+}
+
+@mixin above-orientation($width, $orientation) {
+  @media screen and (min-width: $width) and (orientation: $orientation) {
+    @content;
+  }
+}
+
+// между первой и второй величиной (по умолчанию ширина)
+@mixin between($minWidth, $maxWidth, $orientation: 'width') {
+  @media screen and (min-#{$orientation}: $minWidth) and (max-#{$orientation}: $maxWidth) {
+    @content;
+  }
+}
+
+// =============================================================================
+// Функции пересчета значений
+// =============================================================================
+
+@function rem($num) {
+  $strip-unit: $num / ($num * 0 + 1);
+  @return $strip-unit / 16 * 1rem;
+}
+
+@function em($num, $root: 16) {
+  $strip-unit: $num / ($num * 0 + 1);
+  @return $strip-unit / $root * 1em;
+}
+
+// =============================================================================
+// Миксины специфичные для проекта
+// =============================================================================
+
+// Добавлять свои миксины здесь
+
+// Generates the image in either standard size or retina display version
+@mixin imgRetina($image, $extension, $width, $height, $position: center, $repeat: no-repeat) {
+  background: url($image + '.' + $extension) $repeat $position;
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min--moz-device-pixel-ratio: 2),
+    screen and (-moz-min-device-pixel-ratio: 2),
+    screen and (-o-min-device-pixel-ratio: 2/1),
+    screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx) {
+    background: url($image + '@2x' + '.' + $extension) $repeat $position;
+    background-size: $width $height;
+  }
+}
+
+/*
+  example: @include imgRetina(images/waterlily, jpg, 200px, 200px, no-repeat, center);
+   */
+
+// Triangle
+@mixin triangle($dir, $w, $h, $clr) {
+  width: 0;
+  height: 0;
+  border-style: solid;
+
+  @if $dir == top {
+    border-width: 0 $w/2 $h $w/2;
+    border-color: transparent transparent $clr transparent;
+  } @else if $dir == bottom {
+    border-width: $h $w/2 0 $w/2;
+    border-color: $clr transparent transparent transparent;
+  } @else if $dir == left {
+    border-width: $h/2 $w $h/2 0;
+    border-color: transparent $clr transparent transparent;
+  } @else if $dir == right {
+    border-width: $h/2 0 $h/2 $w;
+    border-color: transparent transparent transparent $clr;
+  } @else if $dir == top_left {
+    border-width: $w $h 0 0;
+    border-color: $clr transparent transparent transparent;
+  } @else if $dir == top_right {
+    border-width: 0 $h $w 0;
+    border-color: transparent $clr transparent transparent;
+  } @else if $dir == bottom_right {
+    border-width: 0 0 $w $w;
+    border-color: transparent transparent $clr transparent;
+  } @else if $dir == bottom_left {
+    border-width: $w 0 0 $w;
+    border-color: transparent transparent transparent $clr;
+  }
+}
+
+/// Block Element
+/// @access public
+/// @param {String} $element - Element's name
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+
+/// Block Modifier
+/// @access public
+/// @param {String} $modifier - Modifier's name
+@mixin modifier($modifier) {
+  &_#{$modifier} {
+    @content;
+  }
+}
+
+/// Cascad Element
+/// class.caskad
+@mixin cascad($cascad) {
+  &.#{$cascad} {
+    @content;
+  }
+}
+
+/// @alias element
+@mixin e($element) {
+  @include element($element) {
+    @content;
+  }
+}
+
+/// @alias modifier
+@mixin m($modifier) {
+  @include modifier($modifier) {
+    @content;
+  }
+}
+
+/// @alias modifier
+@mixin c($cascad) {
+  @include cascad($cascad) {
+    @content;
+  }
+}
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+          + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin gradient-color($gradient) {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

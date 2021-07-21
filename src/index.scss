@@ -1,0 +1,54 @@
+@import url('normalize.css');
+@import '@/assets/styles/_mixins';
+@import '@/assets/styles/_variables';
+@import '@/assets/styles/_fonts';
+
+#root {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 100vh;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.development-mode {
+  * {
+    background-color: rgba($danger, 0.03);
+  }
+}
+
+div {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+main {
+  flex-grow: 1;
+  height: calc(100% - 70px);
+  padding: 0 rem(16);
+  overflow-y: auto;
+}
+
+canvas {
+  width: 100%;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-karla;
+}
