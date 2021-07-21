@@ -1,0 +1,32 @@
+@import '@/assets/styles/_mixins';
+@import '@/assets/styles/_variables';
+
+.root {
+  background: $danger;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text {
+  font-size: rem(150);
+  line-height: 1.2;
+  letter-spacing: rem(4);
+}
+
+.button {
+  width: rem(231);
+  height: rem(66);
+  font-weight: bold;
+  font-size: rem(23);
+  line-height: rem(27);
+}
+* + .button {
+  margin-top: rem(60);
+}
