@@ -4,19 +4,25 @@ import Login from './pages/Login';
 
 interface IGeneralMenu {
   title: string;
-  link: string;
+  link: LinkEnum;
   component: () => JSX.Element;
+}
+
+// eslint-disable-next-line no-shadow
+export enum LinkEnum {
+  LOGIN = '/',
+  CHAT = '/chat',
 }
 
 export const GENERAL_MENU = [
   {
     title: 'Login',
-    link: '/',
+    link: LinkEnum.LOGIN,
     component: () => <Login />,
   },
   {
     title: 'Chat',
-    link: '/chat',
+    link: LinkEnum.CHAT,
     component: () => <Chat />,
   },
 ];
