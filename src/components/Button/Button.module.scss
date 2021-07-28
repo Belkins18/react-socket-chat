@@ -1,0 +1,27 @@
+@import '@/assets/styles/_mixins';
+@import '@/assets/styles/_variables';
+
+.root {
+  border: none;
+  background: #73d677;
+  box-shadow: inset rem(0) rem(-9) rem(0) rgba(0, 0, 0, 0.18);
+  border-radius: rem(11);
+  height: rem(66);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: $dark;
+  padding: 0 rem(20) rem(9);
+  cursor: pointer;
+  outline: none;
+
+  font-family: Karla;
+  font-weight: bold;
+  font-size: rem(23);
+  line-height: rem(27);
+
+  &:active {
+    box-shadow: inset rem(0) rem(-6) rem(0) rgba(0, 0, 0, 0.18);
+    padding-bottom: rem(6);
+  }
+}
