@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
-import s from './Input.module.scss';
+import s from './FormInput.module.scss';
 
-const Input = () => {
+const FormInput: React.FC = () => {
   const [value, setValue] = useState('');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -11,4 +11,4 @@ const Input = () => {
   return <input type="text" className={s.root} onChange={handleChange} value={value} />;
 };
 
-export default Input;
+export default FormInput;

@@ -6,7 +6,7 @@ import Header from '../../components/Header';
 const Chat: React.FC = () => {
   return (
     <>
-      <Header />
+      <Header>Name</Header>
     </>
   );
 };

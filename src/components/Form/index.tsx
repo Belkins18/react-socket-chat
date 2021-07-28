@@ -1,5 +1,5 @@
 import React, { FormEvent } from 'react';
-import Input from './Input';
+import FormInput from './FormInput';
 
 interface Props {
   children: React.ReactNode;
@@ -14,6 +14,5 @@ const Form = ({ children }: Props): JSX.Element => {
   return <form onSubmit={handleSubmit}>{children}</form>;
 };
 
-Form.Input = Input;
-
+Form.Input = FormInput;
 export default Form;

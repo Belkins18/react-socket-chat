@@ -12,6 +12,7 @@
     "_build:prod": "env NODE_ENV=production webpack --config webpack.config.js",
     "build:dev": "run-s --print-label clear _build:dev",
     "build:prod": "run-s --print-label clear _build:prod",
+    "eslint": "eslint ./src --fix",
     "start": "env NODE_ENV=development webpack-dev-server"
   },
   "dependencies": {
