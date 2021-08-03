@@ -8,7 +8,14 @@ const FormInput: React.FC = () => {
     setValue(event.target.value.trim());
   };
 
-  return <input type="text" className={s.root} onChange={handleChange} value={value} />;
+  return (
+    <input
+      type='text'
+      className={s.root}
+      onChange={handleChange}
+      value={value}
+    />
+  );
 };
 
 export default FormInput;

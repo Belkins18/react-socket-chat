@@ -13,9 +13,18 @@ interface Props {
   className?: string;
 }
 
-const Button: React.FC<Props> = ({ children, className = null, background, onClick }) => {
+const Button: React.FC<Props> = ({
+  children,
+  className = null,
+  background,
+  onClick,
+}) => {
   return (
-    <button type="button" className={cn(s.root, className)} onClick={onClick} style={{ backgroundColor: background }}>
+    <button
+      type='button'
+      className={cn(s.root, className)}
+      onClick={onClick}
+      style={{ backgroundColor: background }}>
       {children}
     </button>
   );

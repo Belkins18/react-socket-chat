@@ -10,7 +10,10 @@ const NotFound = () => {
     <main className={s.root}>
       <div className={s.wrap}>
         <div className={s.text}>404</div>
-        <Button onClick={() => navigate(LinkEnum.LOGIN)} className={s.button} background={BtnBackgrounds.Yellow}>
+        <Button
+          onClick={() => navigate(LinkEnum.LOGIN)}
+          className={s.button}
+          background={BtnBackgrounds.Yellow}>
           Return
         </Button>
       </div>

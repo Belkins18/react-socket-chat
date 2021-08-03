@@ -2,7 +2,13 @@ module.exports = {
   env: {
     browser: true,
   },
-  extends: ['airbnb', 'airbnb/hooks', 'react-app', 'prettier', 'prettier/react'],
+  extends: [
+    'airbnb',
+    'airbnb/hooks',
+    'react-app',
+    'prettier',
+    'prettier/react',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -18,7 +24,13 @@ module.exports = {
     'react/no-unescaped-entities': ['error', { forbid: ['>', '}'] }],
     'no-console': 'warn',
     camelcase: 'warn',
-    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx', '.ts', '.js'] }],
+    'react/jsx-filename-extension': [
+      'error',
+      { extensions: ['.jsx', '.tsx', '.ts', '.js'] },
+    ],
+    'react/jsx-max-props-per-line': ['error', { maximum: 2, when: 'always' }],
+    'import/prefer-default-export': 'off',
+    'react/jsx-props-no-spreading': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',

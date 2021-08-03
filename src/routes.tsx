@@ -1,6 +1,11 @@
 import React from 'react';
-import Chat from './pages/Chat';
-import Login from './pages/Login';
+import { withSuspence } from '@/hoc/withSuspence';
+
+const Chat = React.lazy(() => import('./pages/Chat'));
+const Login = React.lazy(() => import('./pages/Login'));
+
+const SuspendedChat = withSuspence(Chat);
+const SuspendedLogin = withSuspence(Login);
 
 interface IGeneralMenu {
   title: string;
@@ -18,12 +23,12 @@ export const GENERAL_MENU = [
   {
     title: 'Login',
     link: LinkEnum.LOGIN,
-    component: () => <Login />,
+    component: () => <SuspendedLogin />,
   },
   {
     title: 'Chat',
     link: LinkEnum.CHAT,
-    component: () => <Chat />,
+    component: () => <SuspendedChat />,
   },
 ];
 
